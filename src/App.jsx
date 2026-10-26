@@ -5,20 +5,25 @@ import RecipeDetailPage from './pages/RecipeDetailPage'
 import MyRecipesPage from './pages/MyRecipesPage'
 import FavoritesPage from './pages/FavoritesPage'
 import NotFoundPage from './pages/NotFoundPage'
+import Layout from './components/Layout'
 
 import './App.css'
 
 function App() {
-  
+
 
   return (
-    <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/mis-recetas' element={<MyRecipesPage/> } />
-      <Route path='/receta/:id' element={<RecipeDetailPage />} />
-      <Route path='/favoritas' element={<FavoritesPage/> } />
-      <Route path='*' element={<NotFoundPage/> } />
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/mis-recetas' element={<MyRecipesPage />} />
+          <Route path='/receta/:id' element={<RecipeDetailPage />} />
+          <Route path='/favoritas' element={<FavoritesPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
 
