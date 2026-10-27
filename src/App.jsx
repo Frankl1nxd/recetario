@@ -7,10 +7,9 @@ import FavoritesPage from './pages/FavoritesPage'
 import NotFoundPage from './pages/NotFoundPage'
 import Layout from './components/Layout'
 
-import './App.css'
 
 function App() {
-
+  
 
   return (
     <>
