@@ -1,11 +1,45 @@
+import { useState } from "react"
 import RecipeList from "../components/RecipeList"
+import SearchBar from "../components/SearchBar"
+import CategoryFilter from "../components/CategoryFilter"
+import useFetch from "../hooks/useFetch"
 
 export default function HomePage() {
-    const recetas = [
-        {idMeal: '1', strMeal: 'Arroz con Mango', strMealThumb: 'https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg'},
-        {idMeal: '2', strMeal: 'Arroz con Mango', strMealThumb: 'https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg'},
-        {idMeal: '3', strMeal: 'Arroz con Mango', strMealThumb: 'https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg'},
-    ]
+    const [query, setQuery] = useState('')
+    const [select, setSelect] = useState('Chicken')
 
-    return (<RecipeList recetas={recetas}/>)
+    const urlCategorias = 'https://www.themealdb.com/api/json/v1/1/categories.php'
+    const { data: categoryData, loading: categoryLoading, error: categoryError } = useFetch(urlCategorias) 
+    const categoryNames = categoryData?.categories.map((c) => c.strCategory) ?? []
+
+    const urlRecetas = query
+    ?`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`
+    : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(select)}`
+    const {data: recipeData, loading: recetaLoading, error: recetaError } = useFetch(urlRecetas)
+    const meals = recipeData?.meals ?? []
+
+
+    
+
+    return (
+        <div>
+            <SearchBar value={query} onSearch={setQuery} />
+
+            {categoryLoading && <p>Cargando categorias...</p>}
+            {categoryError && <p>Error: {categoryError}</p>}
+            {!categoryLoading && !categoryError &&(
+                <CategoryFilter categories={categoryNames} selected={select} onSelect={setSelect}/>
+            )}
+
+            <p>Buscando: {query}</p>
+
+            {recetaLoading && <p>Cargando recetas...</p>}
+            {recetaError && <p>Error: {recetaError}</p>}
+            {!recetaLoading && !recetaError && meals.length === 0 && <p>Sin resultados</p>}
+            {!recetaLoading && !recetaError && meals.length > 0 && <RecipeList recetas={meals}/>}
+
+
+            
+        </div>
+    )
 }

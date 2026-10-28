@@ -94,4 +94,50 @@ main {
   padding: 0.75rem;
   font-size: 1rem;
 }
+
+/* ===== SearchBar ===== */
+.search-bar {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto var(--space);
+  padding: 0.7rem 1rem;
+  border: 1px solid #d8d2c8;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+.search-bar:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: transparent;
+}
+
+/* ===== CategoryFilter ===== */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space);
+}
+
+.category-btn {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d8d2c8;
+  border-radius: 999px;
+  background: var(--color-card);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.category-btn:hover {
+  background: #f0ebe3;
+}
+
+.category-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
 /* ===== Cards, grid y formularios: se agregan en la Fase 9 ===== */
