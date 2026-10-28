@@ -3,17 +3,20 @@ import RecipeList from "../components/RecipeList"
 import SearchBar from "../components/SearchBar"
 import CategoryFilter from "../components/CategoryFilter"
 import useFetch from "../hooks/useFetch"
+import useDebounce from "../hooks/useDebounce"
 
 export default function HomePage() {
     const [query, setQuery] = useState('')
     const [select, setSelect] = useState('Chicken')
+
+    const debouncedQuery = useDebounce(query, 500)
 
     const urlCategorias = 'https://www.themealdb.com/api/json/v1/1/categories.php'
     const { data: categoryData, loading: categoryLoading, error: categoryError } = useFetch(urlCategorias) 
     const categoryNames = categoryData?.categories.map((c) => c.strCategory) ?? [] 
 
     const urlRecetas = query
-    ?`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}` // encodeURIComponent por si hay espacios o caracteres
+    ?`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(debouncedQuery)}` // encodeURIComponent por si hay espacios o caracteres
     : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(select)}`
     const {data: recipeData, loading: recetaLoading, error: recetaError } = useFetch(urlRecetas)
     const meals = recipeData?.meals ?? []
