@@ -140,4 +140,50 @@ main {
   border-color: var(--color-primary);
   color: #fff;
 }
+
+/* ===== RecipeDetailPage ===== */
+.recipe-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: var(--space);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.recipe-detail img {
+  display: block;
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.recipe-detail h1 {
+  margin: var(--space) 0 0.25rem;
+}
+
+.recipe-detail h2 {
+  margin-top: 1.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.recipe-detail p {
+  line-height: 1.6;
+}
+
+/* Las instrucciones de la API traen saltos de línea */
+.recipe-detail h2 + p {
+  white-space: pre-line;
+}
+
+.recipe-detail a {
+  color: var(--color-primary);
+}
+
+.recipe-detail ul {
+  padding-left: 1.2rem;
+  line-height: 1.8;
+}
 /* ===== Cards, grid y formularios: se agregan en la Fase 9 ===== */

@@ -18,6 +18,7 @@ export default function useFetch(url) {
                     throw new Error('Ocurrio un error al cargar los datos')
                 }
                 const resultado = await response.json()
+
                 setData(resultado)
             } catch (err) {
                 if (err.name === 'AbortError') {
