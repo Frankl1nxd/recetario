@@ -7,6 +7,7 @@ import useDebounce from "../hooks/useDebounce"
 import usePagination from "../hooks/usePagination"
 
 export default function HomePage() {
+
     const [query, setQuery] = useState('')
     const [select, setSelect] = useState('Chicken')
 
@@ -44,8 +45,6 @@ export default function HomePage() {
             {!categoryLoading && !categoryError && (
                 <CategoryFilter categories={categoryNames} selected={select} onSelect={handleSelectCategory} />
             )}
-
-            <p>Buscando: {query}</p>
 
             {recetaLoading && <p>Cargando recetas...</p>}
             {recetaError && <p>Error: {recetaError}</p>}
