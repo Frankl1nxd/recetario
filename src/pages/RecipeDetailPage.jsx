@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import useFetch from "../hooks/useFetch"
 import getIngredients from "../utils/getIngredients"
+import BackButton from "../components/BackButton"
 
 export default function RecipeDetailPage() {
     const { id } = useParams()
@@ -18,35 +19,43 @@ export default function RecipeDetailPage() {
     //console.log(ingredients)
 
     return (
-        <article className="recipe-detail">
-            <img src={recipeDetail.strMealThumb} alt={recipeDetail.strMeal} />
-            <h1>{recipeDetail.strMeal}</h1>
-            <p>{recipeDetail.strCategory}</p>
-            <p>{recipeDetail.strArea}</p>
 
-            <h2>Instrucciones</h2>
-            <p>{recipeDetail.strInstructions}</p>
+        <div>
 
-            {recipeDetail.strYoutube &&
-                <>
-                    <h3>Video de preparacion</h3>
-                    <a href={recipeDetail.strYoutube} target="_blank" rel="noreferrer">Ver: {recipeDetail.strMeal}</a>
-                </>
-            }
+            <article className="recipe-detail">
+                <img src={recipeDetail.strMealThumb} alt={recipeDetail.strMeal} />
+                <h1>{recipeDetail.strMeal}</h1>
+                <p>{recipeDetail.strCategory}</p>
+                <p>{recipeDetail.strArea}</p>
 
-            <h2>Ingredientes</h2>
-            <ul>
-                {ingredients.map((ing) => (
-                    <li key={ing.ingredient}>
-                        {ing.measure}
-                        {"  "}
-                        {ing.ingredient}
+                <h2>Instrucciones</h2>
+                <p>{recipeDetail.strInstructions}</p>
 
-                    </li>
-                ))}
-            </ul>
+                {recipeDetail.strYoutube &&
+                    <>
+                        <h3>Video de preparacion</h3>
+                        <a href={recipeDetail.strYoutube} target="_blank" rel="noreferrer">Ver: {recipeDetail.strMeal}</a>
+                    </>
+                }
+
+                <h2>Ingredientes</h2>
+                <ul>
+                    {ingredients.map((ing) => (
+                        <li key={ing.ingredient}>
+                            {ing.measure}
+                            {"  "}
+                            {ing.ingredient}
+
+                        </li>
+                    ))}
+                </ul>
+
+            </article>
+
+            <BackButton />
+
+        </div>
 
 
-        </article>
     )
 }

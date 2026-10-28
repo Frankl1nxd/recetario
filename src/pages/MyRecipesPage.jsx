@@ -1,5 +1,9 @@
+import BackButton from "../components/BackButton"
 export default function MyRecipesPage() {
     return (
-        <h1>Mis Recetas</h1>
+        <div>
+            <h1> Favorites Page</h1>
+            <BackButton />
+        </div>
     )
 }
