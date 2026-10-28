@@ -17,10 +17,10 @@ export default function HomePage() {
     : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(select)}`
     const {data: recipeData, loading: recetaLoading, error: recetaError } = useFetch(urlRecetas)
     const meals = recipeData?.meals ?? []
-
-    const handleSelectQuery = (query) => {
+    //limpia el buscador cuando cambio de categoria 
+    const handleSelectCategory = (category) => {
         setQuery('')
-        setSelect(query)
+        setSelect(category)
     }
     
 
@@ -31,7 +31,7 @@ export default function HomePage() {
             {categoryLoading && <p>Cargando categorias...</p>}
             {categoryError && <p>Error: {categoryError}</p>}
             {!categoryLoading && !categoryError &&(
-                <CategoryFilter categories={categoryNames} selected={select} onSelect={handleSelectQuery}/>
+                <CategoryFilter categories={categoryNames} selected={select} onSelect={handleSelectCategory}/>
             )}
 
             <p>Buscando: {query}</p>
