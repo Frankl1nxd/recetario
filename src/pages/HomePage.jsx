@@ -10,15 +10,18 @@ export default function HomePage() {
 
     const urlCategorias = 'https://www.themealdb.com/api/json/v1/1/categories.php'
     const { data: categoryData, loading: categoryLoading, error: categoryError } = useFetch(urlCategorias) 
-    const categoryNames = categoryData?.categories.map((c) => c.strCategory) ?? []
+    const categoryNames = categoryData?.categories.map((c) => c.strCategory) ?? [] 
 
     const urlRecetas = query
-    ?`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`
+    ?`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}` // encodeURIComponent por si hay espacios o caracteres
     : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(select)}`
     const {data: recipeData, loading: recetaLoading, error: recetaError } = useFetch(urlRecetas)
     const meals = recipeData?.meals ?? []
 
-
+    const handleSelectQuery = (query) => {
+        setQuery('')
+        setSelect(query)
+    }
     
 
     return (
@@ -28,7 +31,7 @@ export default function HomePage() {
             {categoryLoading && <p>Cargando categorias...</p>}
             {categoryError && <p>Error: {categoryError}</p>}
             {!categoryLoading && !categoryError &&(
-                <CategoryFilter categories={categoryNames} selected={select} onSelect={setSelect}/>
+                <CategoryFilter categories={categoryNames} selected={select} onSelect={handleSelectQuery}/>
             )}
 
             <p>Buscando: {query}</p>
