@@ -9,16 +9,23 @@ export default function RecipeCard({ id, photo, name }) {
     return (
         <div className="recipe-card">
 
-            <Link to={`/receta/${id}`} >
-                <img src={photo} alt={name} />
-                <h3>{name}</h3>
-
-
-            </Link>
             <FavoriteButton
                 isFavorite={isFavorite(id)}
                 onToggle={() => toggleFavorite(recipe)}
             />
+
+            <Link to={`/receta/${id}`} >
+                <div className="card-media">
+                    <img src={photo} alt={name} />
+                </div>
+
+                <div className="card-content">
+                <h3 className="title">{name}</h3>
+
+                </div>
+
+            </Link>
+            
         </div>
 
     )

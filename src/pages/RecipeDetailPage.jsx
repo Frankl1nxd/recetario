@@ -13,40 +13,39 @@ export default function RecipeDetailPage() {
     const { data, loading, error } = useFetch(url)
     const recipeDetail = data?.meals?.[0] ?? null //saco el detalle de la receta.
 
-    if (loading) return <p>Cargando...</p>
-    if (error) return <p>Error: {error}</p>
+    if (loading) return <p className="loading-spinner" role="status" aria-label="Cargando"></p>
+    if (error) return <p className="error-message" role="status">Error: {error}</p>
     if (!recipeDetail) return <p>Receta no encontrada</p>
 
-
     const ingredients = getIngredients(recipeDetail)
+
+    const videoId = recipeDetail.strYoutube?.split('v=')[1]
     //console.log(ingredients)
 
     return (
 
-        <div>
+        <div className="recipe-detail">
+            <BackButton />
+            <img className="hero-image" src={recipeDetail.strMealThumb} alt={recipeDetail.strMeal} />
 
-            <article className="recipe-detail">
-                <img src={recipeDetail.strMealThumb} alt={recipeDetail.strMeal} />
-                <h1>{recipeDetail.strMeal}</h1>
-                <FavoriteButton
-                    isFavorite={isFavorite(recipeDetail.idMeal)}
-                    onToggle={() => toggleFavorite(recipeDetail)}
-                />
-                <p>{recipeDetail.strCategory}</p>
-                <p>{recipeDetail.strArea}</p>
+            <div className="detail-header">
 
-                <h2>Instrucciones</h2>
-                <p>{recipeDetail.strInstructions}</p>
+                <h1 className="detail-title">{recipeDetail.strMeal}</h1>
+                <div className="detail-meta">
+                    <p className="badge">{recipeDetail.strCategory}</p>
+                    <p>{recipeDetail.strArea}</p>
 
-                {recipeDetail.strYoutube &&
-                    <>
-                        <h3>Video de preparacion</h3>
-                        <a href={recipeDetail.strYoutube} target="_blank" rel="noreferrer">Ver: {recipeDetail.strMeal}</a>
-                    </>
-                }
+                    <FavoriteButton
+                        className=""
+                        isFavorite={isFavorite(recipeDetail.idMeal)}
+                        onToggle={() => toggleFavorite(recipeDetail)}
+                    />
+                </div>
+            </div>
 
+            <section className="ingredients-section">
                 <h2>Ingredientes</h2>
-                <ul>
+                <ul className="ingredient-list">
                     {ingredients.map((ing) => (
                         <li key={ing.ingredient}>
                             {ing.measure}
@@ -56,10 +55,24 @@ export default function RecipeDetailPage() {
                         </li>
                     ))}
                 </ul>
+            </section>
 
-            </article>
 
-            <BackButton />
+            <section className="instructions-section">
+                <h2>Instrucciones</h2>
+                <p className="instructions-content">{recipeDetail.strInstructions}</p>
+            </section>
+
+            {recipeDetail.strYoutube &&
+                <div className="recipe-video">
+                    <iframe
+                        src={`https://www.youtube.com/embed/${videoId}`}
+                        title={recipeDetail.strMeal}
+                        allowFullScreen
+                    />
+
+                </div>
+            }
 
         </div>
 

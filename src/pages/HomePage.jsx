@@ -35,25 +35,23 @@ export default function HomePage() {
         setSelect(category)
     }
 
-
     return (
         <div>
             <SearchBar value={query} onSearch={setQuery} />
 
-            {categoryLoading && <p>Cargando categorias...</p>}
             {categoryError && <p>Error: {categoryError}</p>}
             {!categoryLoading && !categoryError && (
                 <CategoryFilter categories={categoryNames} selected={select} onSelect={handleSelectCategory} />
             )}
 
-            {recetaLoading && <p>Cargando recetas...</p>}
+            {recetaLoading && <p className="loading-spinner"></p>}
             {recetaError && <p>Error: {recetaError}</p>}
             {!recetaLoading && !recetaError && meals.length === 0 && <p>Sin resultados</p>}
             {!recetaLoading && !recetaError && meals.length > 0 && <RecipeList recetas={currentItems} />}
             {totalPages > 1 && (
                 <div className="pagination">
                     <button onClick={prev} disabled={page === 1}>Anterior</button>
-                    <span>{ page } / { totalPages }</span>
+                    <span className="page-info">{ page } / { totalPages }</span>
                     <button onClick={next} disabled={page === totalPages}>Siguiente</button>
                 </div>
             )}
