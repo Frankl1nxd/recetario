@@ -21,11 +21,11 @@ export default function RecipeForm({ onAddRecipe, categories = [] }) {
 
             <div className="form-group">
 
-                <input name="image" value={form.image} onChange={handleChange} placeholder="Url de la imagen platillo..." />
+                <input name="image" value={form.image} onChange={handleChange} placeholder="Link de la imagen de la receta..." />
             </div>
 
             <div className="form-group">
-                <input name="name" value={form.name} onChange={handleChange} placeholder="Nombre del platillo" />
+                <input name="name" value={form.name} onChange={handleChange} placeholder="Nombre de la receta..." />
             </div>
 
             <div className="form-group">

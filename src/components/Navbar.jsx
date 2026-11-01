@@ -1,11 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const linkClass = ({ isActive }) => (isActive ? 'link active' : 'link')
 
 export default function Navbar() {
     return (
         <nav className="navbar">
-            <div className="brand">Recetario La Maxima</div>
+            <Link to='/' className="brand">Recetario La Maxima</Link>
             <ul className="nav-links">
                 <NavLink
                     to='/'
