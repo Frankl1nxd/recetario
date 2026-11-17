@@ -51,17 +51,17 @@ export default function RecipeForm({ onAddRecipe, categories = [] }) {
 
             <div className="form-group">
                 <label htmlFor="image">Imagen</label>
-                <input name="image" value={form.image} onChange={handleChange} placeholder="Url de la imagen de la receta" />
+                <input  id="image" name="image" value={form.image} onChange={handleChange} placeholder="Url de la imagen de la receta" />
             </div>
 
             <div className="form-group">
                 <label htmlFor="name">Nombre</label>
-                <input name="name" value={form.name} onChange={handleChange} placeholder="Carbonara tradicional" />
+                <input id="name" name="name" value={form.name} onChange={handleChange} placeholder="Carbonara tradicional" />
             </div>
 
             <div className="form-group">
                 <label htmlFor="category">Categoría</label>
-                <select name="category" value={form.category} onChange={handleChange}>
+                <select id="category" name="category" value={form.category} onChange={handleChange}>
                     <option value="">Seleccionar categoría</option>
                     {categories.map((name) => (
                         <option key={name} value={name}>{name}</option>
@@ -71,12 +71,12 @@ export default function RecipeForm({ onAddRecipe, categories = [] }) {
 
             <div className="form-group">
                 <label htmlFor="instructions">Instrucciones</label>
-                <textarea name="instructions" value={form.instructions} onChange={handleChange} placeholder="Ingresar instrucciones..." />
+                <textarea id="instructions" name="instructions" value={form.instructions} onChange={handleChange} placeholder="Ingresar instrucciones..." />
             </div>
 
             <div className="form-group">
                 <label htmlFor="ingredients">Ingredientes</label>
-                <textarea name="ingredients" value={form.ingredients} onChange={handleChange} placeholder="Ingresar ingredientes..." />
+                <textarea id="ingredients" name="ingredients" value={form.ingredients} onChange={handleChange} placeholder="Ingresar ingredientes..." />
             </div>
 
             {error && <p className="form-error" role="alert">{error}</p>}
