@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom"
 import RecipeList from "../components/RecipeList"
 import SearchBar from "../components/SearchBar"
 import CategoryFilter from "../components/CategoryFilter"
@@ -9,7 +10,8 @@ import usePagination from "../hooks/usePagination"
 export default function HomePage() {
 
     const [query, setQuery] = useState('')
-    const [select, setSelect] = useState('Chicken')
+    const [searchParams, setSearchParams] = useSearchParams()
+    const select = searchParams.get('category') ?? 'Beef'
 
     const debouncedQuery = useDebounce(query, 500)
 
@@ -32,7 +34,7 @@ export default function HomePage() {
     //limpia el buscador cuando cambio de categoria 
     const handleSelectCategory = (category) => {
         setQuery('')
-        setSelect(category)
+        setSearchParams({ category })
     }
 
     return (
