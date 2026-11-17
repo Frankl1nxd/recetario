@@ -701,6 +701,25 @@ button, input, select, textarea {
   background-color: var(--color-primary-hover);
 }
 
+/* ===== Mensajes del formulario ===== */
+.form-error,
+.form-success {
+  margin: 0.5rem 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+.form-error {
+  background: #fdecea;
+  color: #b3261e;
+}
+
+.form-success {
+  background: #e6f4ea;
+  color: #1e7a3c;
+}
+
 /* My Recipe Card & Delete */
 .my-recipe-card {
   display: flex;
