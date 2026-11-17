@@ -99,6 +99,8 @@ button, input, select, textarea {
   outline-offset: 2px;
 }
 
+
+
 /* ==========================================================================
    Navigation (Navbar, Links, Active)
    ========================================================================== */
@@ -397,6 +399,23 @@ button, input, select, textarea {
   color: var(--color-primary);
   background-color: var(--color-primary-light);
   border-radius: var(--radius-pill);
+}
+
+/* ===== Mensajes de estado ===== */
+.status-message {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: #6b6b6b;
+  background: var(--color-card);
+  border: 1px dashed #d8d2c8;
+  border-radius: var(--radius);
+}
+
+.status-message.error {
+  color: #b3261e;
+  border-color: #b3261e;
 }
 
 /* ==========================================================================

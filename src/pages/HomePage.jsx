@@ -47,8 +47,8 @@ export default function HomePage() {
             )}
 
             {recetaLoading && <p className="loading-spinner"></p>}
-            {recetaError && <p>Error: {recetaError}</p>}
-            {!recetaLoading && !recetaError && meals.length === 0 && <p>Sin resultados</p>}
+            {recetaError && <p className="status-message error">Error: {recetaError}</p>}
+            {!recetaLoading && !recetaError && meals.length === 0 && <p className="status-message">Sin resultados</p>}
             {!recetaLoading && !recetaError && meals.length > 0 && <RecipeList recetas={currentItems} />}
             {totalPages > 1 && (
                 <div className="pagination">
